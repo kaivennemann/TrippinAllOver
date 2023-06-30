@@ -1,6 +1,6 @@
 from ryanair import Ryanair
 from datetime import datetime, timedelta
-from ryanair_utilities import print_flight
+from ryanair_utilities import print_flights
 
 api = Ryanair(currency="GBP")
 out_day = datetime(2023, 7, 7)
