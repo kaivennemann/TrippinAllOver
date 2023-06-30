@@ -1,5 +1,6 @@
 from ryanair import Ryanair
 from datetime import datetime, timedelta
+from ryanair_utilities import print_flight
 
 api = Ryanair(currency="GBP")
 day1 = datetime.today().date()
@@ -11,8 +12,8 @@ flights = api.get_cheapest_return_flights(source_airport = "STN",
                                     return_date_from = day2,
                                     return_date_to = day2)
 
-f = flights
-# f.sort(key = lambda x : x.totalPrice)
 
-for x in f[:10]:
-    print(str(x) + '\n')
+# flights.sort(key = lambda x : x.totalPrice)
+
+for f in flights[:5]:
+    print_flight(f)
