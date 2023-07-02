@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 from ryanair_utilities import print_flights
 
 api = Ryanair(currency="GBP")
-out_day = datetime(2023, 7, 7)
+out_day = datetime(2023, 10, 13)
 out_range = 2
-return_day = datetime(2023, 7, 10)
+return_day = out_day + timedelta(days=2)
 return_range = 1
 
 flights = api.get_cheapest_return_flights(source_airport = "STN",
@@ -18,5 +18,5 @@ flights = api.get_cheapest_return_flights(source_airport = "STN",
 
 flights.sort(key = lambda f : f.totalPrice)
 
-for f in flights[:5]:
-    print_flight(f)
+print_flights(flights)
+
