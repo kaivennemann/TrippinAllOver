@@ -1,12 +1,17 @@
 import ryanair.types
 from tabulate import tabulate
 
-def print_flights(flights: list[ryanair.types.Trip]):
+
+def print_trips(trips: list[ryanair.types.Trip]):
     table = []
 
-    for flight in flights:
-        dest = str(flight.outbound.destinationFull) + " (" + str(flight.outbound.destination) + ")"
-        price = str(round(float(flight.totalPrice), 2))
-        table.append(["Dest:", dest, "Price:", "£" + price])
+    for trip in trips:
+        dest = str(trip.outbound.destinationFull) + " (" + str(trip.outbound.destination) + ")"
+        price = str(round(float(trip.totalPrice), 2))
+        out_date = str(trip.outbound.departureTime)
+        return_date = str(trip.inbound.departureTime)
+        table.append(["Dest:  " + dest, "£" + price, out_date, return_date])
 
     print(tabulate(table))
+
+
