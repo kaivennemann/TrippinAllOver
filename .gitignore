@@ -1,1 +1,10 @@
-# Add stuff here
+
+# VSCode
+.vscode
+
+# IntelliJ
+.idea
+.iml
+
+# Other
+.pytest_cache
