@@ -11,9 +11,6 @@ return_range = 1
 
 trips = api.get_cheapest_trips("STN", out_day, out_range, return_day, 1)
 
-
-
 trips.sort(key = lambda f : f.totalPrice)
 
 print_trips(trips)
-
