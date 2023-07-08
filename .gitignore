@@ -1,10 +1,10 @@
 
 # VSCode
-.vscode
+*.vscode
 
 # IntelliJ
-.idea
-.iml
+*.idea
+*.iml
 
 # Other
-.pytest_cache
+*.pytest_cache
