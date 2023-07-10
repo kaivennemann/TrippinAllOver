@@ -1,4 +1,5 @@
-import sys, os
 
-x = str(sys.path)
-print(x)
+from utilities.event_calendar import EventCalendar
+
+e = EventCalendar()
+print(f'{e}')
