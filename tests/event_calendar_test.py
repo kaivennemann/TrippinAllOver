@@ -16,7 +16,6 @@ from datetime import datetime, timedelta, date
 class TestEventCalendar:
 
     start = date(2004, 10, 31)
-    end = date(2004, 11, 7)
 
 
     def test_init(self, capsys):
@@ -29,46 +28,60 @@ class TestEventCalendar:
 
         # Set and print values to compare e against
         today = datetime.now().date()
-        one_year_from_today = today + timedelta(days=365)
+        one_year_from_today = today + timedelta(days=364)
         with capsys.disabled(): print(f'Today: {today}\nOne year: {one_year_from_today}')
 
         # Compare values of e instance vars
         assert e.start == today
         assert e.end == one_year_from_today
-        assert e.length == 366
-        assert e.events.count(False) == 366
+        assert e.events.count(False) == 365
 
 
     def test_init2(self):
-        e = EventCalendar(self.start, self.end)
+        e = EventCalendar(self.start)
 
         assert e.start == self.start
-        assert e.end == self.end
-        assert e.length == 8
-        assert e.events.count(False) == 8
+        assert e.end == self.start + timedelta(days=364)
+        assert e.events.count(False) == 365
     
 
     def test_adding(self, capsys):
-        e = EventCalendar(self.start, self.end)
+        e = EventCalendar(self.start)
         day0 = self.start
         day3 = self.start + timedelta(days=3)
         day5 = self.start + timedelta(days=5)
-        day8 = self.start + timedelta(days=8)
 
         e.add_event_on_day(day0)
         assert e.has_event_on_day(day0)
-        assert e.events[0]
         assert not e.has_event_on_day(day3)
-        with pytest.raises(Exception): e.add_event_on_day(day8)
 
         e.add_event(day3, day5)
-        assert e.events == [True, False, False, True, True, True, False, False]
+        assert e.events[:8] == [True, False, False, True, True, True, False, False]
 
         with capsys.disabled(): print(f'{e}')
 
+    
+    def test_expanding(self):
+        e = EventCalendar(self.start)
+        day400 = self.start + timedelta(days=400)
+        day_minus1 = self.start + timedelta(days=-1)
 
-    def test_deleting(self, capsys):
-        e = EventCalendar(self.start, self.end)
+        e.add_event_on_day(day400)
+        assert e.has_event_on_day(day400)
+        assert len(e.events) == 2 * 365
+        assert e.start == self.start
+        assert e.end == self.start + timedelta(days = 365 + 364)
+
+        e.add_event_on_day(day_minus1)
+        assert e.has_event_on_day(day_minus1)
+        assert e.start == self.start + timedelta(days = -2 * 365)
+        assert e.end == self.start + timedelta(days = 365 + 364)
+        assert len(e.events) == 4 * 365
+
+
+
+    def test_deleting(self):
+        e = EventCalendar(self.start)
         day0 = self.start
         day3 = self.start + timedelta(days=3)
         day4 = self.start + timedelta(days=4)
@@ -85,9 +98,4 @@ class TestEventCalendar:
         assert not e.has_event_on_day(day3)
         assert not e.has_event_on_day(day4)
         assert e.has_event_on_day(day5)
-
-        with capsys.disabled(): print(f'{e}')
-
-
-
 
