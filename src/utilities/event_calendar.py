@@ -29,6 +29,32 @@ class EventCalendar:
         return event_cal
 
 
+    # Returns a list of DateRange objects corresponding to all the events in the EventCalendar
+    def get_events(self):
+        event_dateranges = []
+        i = 0
+        length = len(self.events)
+        while i < length:
+            if self.events[i]:
+                first = self.start + timedelta(days=i)
+                while i < length - 1 and self.events[i + 1]:
+                    i += 1
+                last = self.start + timedelta(days=i)
+                event_dateranges.append(DateRange(first, last))
+            i += 1
+        return event_dateranges
+    
+
+    # Returns a list of dates corresponding to days on which an event occurs
+    def get_event_days(self):
+        event_days = []
+        for i in range(len(self.events)):
+            if self.events[i]:
+                event_day = self.start + timedelta(days = i)
+                event_days.append(event_day)
+        return event_days
+    
+
     # Returns True if a given date has an event
     def has_event_on_day(self, date: date):
         if not (self.start <= date <= self.end): return False
@@ -103,3 +129,16 @@ class EventCalendar:
         if e == '': e = '(N/A)'
         return s + e
 
+
+class DateRange:
+
+    def __init__(self, first: date, last: date):
+        self.first = first
+        self.last = last
+    
+
+class TripLength:
+
+    def __init__(self, minimum: int, maximum: int):
+        self.minimum = minimum
+        self.maximum = maximum
