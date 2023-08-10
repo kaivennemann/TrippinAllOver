@@ -1,8 +1,8 @@
-import flight_types
+from .flight_types import RoundTrip
 from tabulate import tabulate
 
 
-def print_trips(trips: list[flight_types.RoundTrip]):
+def print_trips(trips: list[RoundTrip]):
     table = []
 
     for trip in trips:
