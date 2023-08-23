@@ -4,7 +4,7 @@ As of now, it only incorporates data from Ryanair; however, this could feasibly 
 """
 
 import ryanair
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from utilities.event_calendar import EventCalendar, DateRange, TripLength
 from multimethod import multimeta  # for method overloading
 
@@ -43,7 +43,7 @@ class FlightAPI(metaclass=multimeta):  # allows method overloading
         return sorted(list(results))    
 
 
-    def get_cheapest_roundtrips(self, origin: str, out_day: datetime, out_range: int, return_day: datetime, return_range: int):
+    def get_cheapest_roundtrips(self, origin: str, out_day: date, out_range: int, return_day: date, return_range: int):
         out_days = DateRange(out_day, out_day + timedelta(days = out_range))
         return_days = DateRange(return_day, return_day + timedelta(days = return_range))
         return self.get_cheapest_roundtrips(origin, out_days, return_days)
