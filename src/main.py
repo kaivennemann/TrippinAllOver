@@ -4,6 +4,7 @@ Notes:
     - Add packages: python3 - m pip install [package]
     - To terminated venv session: deactivate
     - To view packages: python3 -m pip list
+    - To install everything from requirements.txt: python3 -m pip install -r requirements.txt
     - To run main.py: python3 src/main.py
 
 Ideas:
