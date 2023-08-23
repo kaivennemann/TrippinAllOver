@@ -1,4 +1,11 @@
 """
+Notes:
+    - Run from .venv via command: source .venv/bin/activate
+    - Add packages: python3 - m pip install [package]
+    - To terminated venv session: deactivate
+    - To view packages: python3 -m pip list
+    - To run main.py: python3 src/main.py
+
 Ideas:
     - add in a europe booking agency API or something to book hostels
     - figure out how payment card APIs work
