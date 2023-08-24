@@ -2,8 +2,12 @@
 Tests for EventCalendar object methods. Run from root directory with pytest.
 '''
 
-import sys
-sys.path.append(sys.path[0][:-5])  # Temporary fix to enable imports from neighboring folder; TODO: replace
+from pathlib import Path
+import sys, os
+# sys.path.append(sys.path[0][:-5])  
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(os.path.join(BASE_DIR)) # Temporary fix to enable imports from neighboring folder; TODO: replace, ise setup tools etc.
 
 from src.utilities.event_calendar import EventCalendar
 from datetime import datetime, timedelta, date

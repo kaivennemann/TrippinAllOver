@@ -6,6 +6,7 @@ Notes:
     - To view packages: python3 -m pip list
     - To install everything from requirements.txt: python3 -m pip install -r requirements.txt
     - To run main.py: python3 src/main.py
+    - To access database: python3 manage.py dbshell
 
 Ideas:
     - add in a europe booking agency API or something to book hostels
