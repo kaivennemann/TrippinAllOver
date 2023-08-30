@@ -41,7 +41,7 @@ def main():
     # Method 2
     print(f"Method 2:")
     flights = api.get_cheapest_roundtrips('STN', EventCalendar.of([(date(2023,11,5), date(2023,11,8))]), TripLength(2, 3))
-    print_trips(flights)
+    print_trips(flights[:10])
     print()
 
     # Method 3
