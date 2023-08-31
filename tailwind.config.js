@@ -1,3 +1,5 @@
+
+
 module.exports = {
   content: ["./src/website/booking/**/*.{html,js}"],
   theme: {
@@ -8,11 +10,17 @@ module.exports = {
       'white': '#ffffff',
       'purple': '#3f3cbb',
       'navy-blue': '#100740',
+      'silver': '#a3a3a3',
+      'gray': '#cbd5e1',
+      'dark-gray': '#4b5563',
+      'light-gray': '#f9fafb',
+      'light-black': '#111827',
     },
     borderRadius: {
         DEFAULT: '4px',
+        'lg': '0.5rem',
         'large': '12px',
-    }
+    },
   },
   plugins: [],
 }

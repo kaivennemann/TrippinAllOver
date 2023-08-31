@@ -28,7 +28,7 @@
                     <span class="self-center text-2xl md:text-4xl font-semibold whitespace-nowrap text-white">TrippinAllOver</span>
                 </a>
                 <!-- menu button for small screens (hidden for md+ screens)-->
-                <button type="button" class="text-white mobile-menu-button inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-gray-600">
+                <button type="button" class="text-white mobile-menu-button inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-dark-gray">
                   <span class="sr-only">Open main menu</span>
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 17 14">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -36,21 +36,21 @@
                 </button>
                 <!-- default navbar -->
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                    <ul class="font-medium flex flex-col p-0 mt-0 rounded-lg bg-gray-50 md:flex-row md:space-x-8 dark:border-gray-700">
+                    <ul class="font-medium flex flex-col p-0 mt-0 rounded-lg md:flex-row md:space-x-8">
                         <li>
-                            <a href="{% url 'booking-home' %}" class="md:text-xl font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue bg-blue-700 rounded md:bg-transparent md:p-0">Home</a>
+                            <a href="{% url 'booking-home' %}" class="md:text-xl hover:text-silver font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue bg-blue-700 rounded md:bg-transparent md:p-0">Home</a>
                         </li>
                         <li>
-                            <a href="{% url 'booking-about' %}" class="md:text-xl font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">About</a>
+                            <a href="{% url 'booking-about' %}" class="md:text-xl hover:text-silver font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">About</a>
                         </li>
                         <li>
-                            <a href="#" class="md:text-xl font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">Services</a>
+                            <a href="#" class="md:text-xl hover:text-silver font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">Services</a>
                         </li>
                         <li>
-                            <a href="#" class="md:text-xl font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">Pricing</a>
+                            <a href="#" class="md:text-xl hover:text-silver font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">Pricing</a>
                         </li>
                         <li>
-                            <a href="#" class="md:text-xl font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">Contact</a>
+                            <a href="#" class="md:text-xl hover:text-silver font-light float-right md:float-none block py-2 pl-3 pr-4 text-navy-blue rounded md:border-0 md:p-0">Contact</a>
                         </li>
                     </ul>
                 </div>
