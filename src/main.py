@@ -8,6 +8,10 @@ Notes:
     - To run main.py: python3 src/main.py
     - To access database: python3 manage.py dbshell
 
+    - When working with tailwind, run:
+        npx tailwindcss -i ./src/website/booking/static/booking/input.css -o ./src/website/booking/static/booking/output.css --watch
+    from TrippinAllOver directory on a seperate terminal window. This will update the tailwind output.css file whenever a change is made to the html
+
 Ideas:
     - add in a europe booking agency API or something to book hostels
     - figure out how payment card APIs work
