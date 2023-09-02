@@ -47,7 +47,17 @@ class FlightAPI(metaclass=multimeta):  # allows method overloading
         out_days = DateRange(out_day, out_day + timedelta(days = out_range))
         return_days = DateRange(return_day, return_day + timedelta(days = return_range))
         return self.get_cheapest_roundtrips(origin, out_days, return_days)
-    
+
+    # TODO: test this method (not sure if it works, it is temporary)
+    def get_cheapest_roundtrips(self, origin: str, out_day: date, return_day: date):
+        result = self.ryanair.get_cheapest_return_flights(
+            source_airport=origin,
+            date_from=out_day,
+            date_to=out_day,
+            return_date_from=return_day,
+            return_date_to=return_day
+        )
+        return result
     
 
 
