@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lf8lgpbv&=eksiac=f_hzf8**7u$3+e639188(7zve&4y*n)pg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['95.217.61.38']
+ALLOWED_HOSTS = ['trippinallover.co.uk', 'www.trippinallover.co.uk']
 
 
 # Application definition
@@ -115,6 +115,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+STATIC_ROOT = '/home/kaiv/webapp/TrippinAllOver/collected_static/'
 
 STATIC_URL = 'static/'
 
