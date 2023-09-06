@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lf8lgpbv&=eksiac=f_hzf8**7u$3+e639188(7zve&4y*n)pg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trippinallover.co.uk', 'www.trippinallover.co.uk']
+ALLOWED_HOSTS = ['trippinallover.co.uk', 'www.trippinallover.co.uk', '127.0.0.1']
 
 
 # Application definition
