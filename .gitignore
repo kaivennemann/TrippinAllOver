@@ -1,6 +1,7 @@
 
 # VSCode
 .vscode/
+collected_static/
 
 # IntelliJ
 *.idea
