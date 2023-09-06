@@ -1,4 +1,4 @@
-#!/Users/kai/Desktop/apps/TrippinAllOver/env/bin/python3.10
+#!/home/kaiv/webapp/TrippinAllOver/.venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys
