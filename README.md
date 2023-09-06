@@ -1,3 +1,3 @@
 # TrippinAllOver
 
-Hey :)
+Hey :) What's trippin?
