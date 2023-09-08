@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['trippinallover.co.uk', 'www.trippinallover.co.uk', '127.0.0.1'
 
 INSTALLED_APPS = [
     'booking.apps.BookingConfig',
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,6 +75,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# TODO: set up PostgreSQL or another DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
