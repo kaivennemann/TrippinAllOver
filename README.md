@@ -1,7 +1,7 @@
 # TrippinAllOver
 
 ## Description
-TrippinAllOver is a web application for students in the UK who want to browse affordable weekend trips all over Europe. With this epic trip planner, you can simply input your availability for an impromptu European excursion, and you will receive recommendations for the best and cheapest placest to fly to on a budget. Head on over to trippinallover.co.uk to check it out!
+TrippinAllOver is a web application for students in the UK who want to browse affordable weekend trips all over Europe. With this epic trip planner, you can simply input your availability for an impromptu European excursion, and you will receive recommendations for the best and cheapest placest to fly to on a budget. Head on over to [trippinallover.co.uk] to check it out!
 
 Note: TrippinAllOver is currently in the development phase, so website functionality may be limited at this time.
 
@@ -11,7 +11,7 @@ We are using the Django web framework for this web app. The directory **src/webs
 ### Useful Commands
 - `python -m django --version`
 - `python manage.py runserver` runs the lightweight Django development server (only for development!)
-    - Note: View the project in a browser at http://127.0.0.1:8000/
+    - Note: View the project in a browser at [http://127.0.0.1:8000/]
 - Run `python manage.py startapp [app name]` in **src/website** to create a new app (such as *booking* or *flightsapi* etc.)
 
 
