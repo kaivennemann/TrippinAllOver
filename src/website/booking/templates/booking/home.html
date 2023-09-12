@@ -20,14 +20,21 @@
                         <div class="grid md:grid-cols-2">
                             <div class="md:mr-2">
                                 <label for="start-date" class="block mb-2 text-sm font-medium text-light-black">Select times of travel:</label>
-                                <input type="date" id="start-date" name="start-date" value="2023-09-01" min="2023-01-01" max="2025-12-31" class="bg-light-gray border border-gray text-light-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
+                                <input type="date" id="start-date" name="start-date" value="2023-10-01" min="2023-01-01" max="2025-12-31" class="bg-light-gray border border-gray text-light-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
                             </div>
                             <div class="md:ml-2">
                                 <label for="end-date" class="block mb-2 text-sm font-medium text-light-black">until:</label>
-                                <input type="date" id="end-date" name="end-date" value="2023-09-01" min="2023-08-23" max="2025-12-31" class="bg-light-gray border border-gray text-light-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
+                                <input type="date" id="end-date" name="end-date" value="2023-10-03" min="2023-08-23" max="2025-12-31" class="bg-light-gray border border-gray text-light-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
                             </div>
                         </div>
                         <button type="button" onclick="single_trip()" class="w-full bg-purple hover:bg-blue active:text-white font-medium rounded text-sm px-5 py-2.5 text-center">Find Trips</button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 md:p-0">
+                <div class="rounded-large w-full p-4 bg-white sm:p-6 md:p-8">
+                    <div id="results-container" class="space-y-6">
+                        <!-- Results will be displayed here -->
                     </div>
                 </div>
             </div>
@@ -48,6 +55,65 @@
             const response = await fetch(`flightsapi/singletrip/?outbound=${out}&startdate=${start}&enddate=${end}`);
             const data = await response.json();
             console.log(data);
+            
+            // Some quick code to display the results; needs to be cleaned up eventually
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.innerHTML = ''; // Clear previous items
+
+            data.data.slice(0, 10).forEach(trip_attributes => {
+                const price = trip_attributes[0];
+                const out_trip = trip_attributes[1];  // Example: [ "2023-09-22T06:10:00", "FR 8503", 16.39, "GBP", "STN", "London Stansted, United Kingdom", "NTE", "Nantes, France" ]
+                const return_trip = trip_attributes[2];  // Example: [ "2023-09-27T21:45:00", "FR 8504", 15.12, "GBP", "NTE", "Nantes, France", "STN", "London Stansted, United Kingdom" ]
+
+                const out_date = out_trip[0];
+                const out_flight_num = out_trip[1];
+                const origin = out_trip[5];
+                const return_date = return_trip[0]
+                const return_flight_num = return_trip[1]
+                const destination = out_trip[7];
+
+                const tripEl = document.createElement('div');
+                tripEl.classList.add('flex', 'my-4', 'items-center');
+
+                const imgElement = document.createElement('img');
+                imgElement.src = `https://source.unsplash.com/random/100x100?${destination}`;  // Random image from unsplash
+                imgElement.classList.add('w-16', 'h-16', 'mr-8', 'rounded');
+                imgElement.style.marginRight = '16px';
+                tripEl.appendChild(imgElement);
+
+                const detailsEl = document.createElement('div');
+                detailsEl.classList.add('flex', 'flex-col');
+
+                const destinationEl = document.createElement('p');
+                destinationEl.textContent = `Destination: ${destination}`;
+                destinationEl.classList.add('text-xl', 'font-bold');
+                detailsEl.appendChild(destinationEl);
+
+                const outDateEl = document.createElement('p');
+                outDateEl.textContent = `Outbound Date: ${out_date}`;
+                detailsEl.appendChild(outDateEl);
+
+                const outFlightNumEl = document.createElement('p');
+                outFlightNumEl.textContent = `Outbound Flight Number: ${out_flight_num}`;
+                detailsEl.appendChild(outFlightNumEl);
+
+                const returnDateEl = document.createElement('p');
+                returnDateEl.textContent = `Return Date: ${return_date}`;
+                detailsEl.appendChild(returnDateEl);
+
+                const returnFlightNumEl = document.createElement('p');
+                returnFlightNumEl.textContent = `Return Flight Number: ${return_flight_num}`;
+                detailsEl.appendChild(returnFlightNumEl);
+
+                const priceEl = document.createElement('p');
+                priceEl.textContent = `Total Price: £${price.toFixed(2)}`;
+                detailsEl.appendChild(priceEl);
+
+                tripEl.appendChild(detailsEl);
+                
+                const resultsContainer = document.getElementById('results-container');
+                resultsContainer.appendChild(tripEl);
+            });
         }
 
     </script>
