@@ -55,4 +55,46 @@ Before deploying, there are a few things to take care of:
 - `python manage.py createsuperuser` to create admin accounts
 
 ### Apache Web Server Setup
-- TODO
+
+Apache Configuration:
+```xml
+<VirtualHost *:443>
+    ServerName trippinallover.co.uk
+    ServerAlias www.trippinallover.co.uk
+    WSGIScriptAlias / /home/kaiv/webapp/TrippinAllOver/wsgi.py
+    WSGIDaemonProcess TrippinAllOver python-path=/home/kaiv/webapp/TrippinAllOver python-home=/home/kaiv/webapp/TrippinAllOver/.venv
+    WSGIProcessGroup TrippinAllOver
+        <IfModule mod_headers.c>
+               Header set Access-Control-Allow-Origin "*"
+        </IfModule>
+
+    DocumentRoot /home/kaiv/webapp/TrippinAllOver
+    <Directory /home/kaiv/webapp/TrippinAllOver >
+        Options -Indexes +FollowSymLinks -MultiViews
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    Alias /static/ /home/kaiv/webapp/TrippinAllOver/collected_static/
+    <Directory /home/kaiv/webapp/TrippinAllOver/collected_static>
+        Require all granted
+    </Directory>
+
+    <Directory /home/kaiv/webapp/TrippinAllOver/src/website/website>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+</VirtualHost>
+```
+The Apache configuration above links together (literally) our web domain with the Django project code on our server. Step by step, the config does the following:
+- Defines a new virtual host that monitors incoming traffic on port 443 (which is the HTTPS standard port)
+- Sets this virtual host's base domain name ([trippinallover.co.uk](www.trippinallover.co.uk)) and an alias for the server name
+- `WSGIScriptAlias` tells Apache to redirect any requests going to the root URL (`/`) to our WSGI app (`wsgi.py`)
+- Configures a `mod_wsgi` daemon process (`WSGIDaemonProcess`) named "TrippinAllOver" to run our Python web app with the specified Python path (i.e. the path to our Python project) and virtual environment
+    - Note: The daemon process is a background process that handles incoming requests to our WSGI application
+- Sets the daemon process group to be the daemon process we configured above
+- Sets some options for specific directories
+    - Note: `Require all granted` allows access to a directory from all hosts
+- Sets the document root (i.e. the directory within the server) for the project
+- Specifies the filesystem path from which static files will be served
