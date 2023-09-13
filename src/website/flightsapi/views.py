@@ -1,4 +1,7 @@
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+import json
 
 from pathlib import Path
 import sys, os
@@ -33,11 +36,25 @@ def create_single_trip_json(outbound_airport, start_date, end_date):
 
         date_format = '%Y-%m-%d'
 
-        start = datetime.strptime(start_date, date_format).date()
-        end = datetime.strptime(end_date, date_format).date()
+        try:
+            start = datetime.strptime(start_date, date_format).date()
+        except ValueError:
+            return {'error': 'start date has incorrect format.'}
 
+        try:
+            end = datetime.strptime(end_date, date_format).date()
+        except ValueError:
+            return {'error': 'end date has incorrect format.'}
+
+        # TODO: make this line safer (using try except or smthn)
         flights = api.get_cheapest_roundtrips('STN', start, end)
 
-        return {
-            'data': flights
-                }
+        return {'data': flights}
+
+# TODO: look into this csrf exempt thing
+@csrf_exempt 
+def calendar(request):
+    if request.method == "POST":
+        print(json.loads(request.body))
+
+    return JsonResponse({})

@@ -3,8 +3,8 @@
 module.exports = {
   content: ["./src/website/booking/**/*.{html,js}"],
   theme: {
-    extend: {},
-    colors: {
+    extend: {
+      colors: {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#ffffff',
@@ -15,8 +15,9 @@ module.exports = {
       'dark-gray': '#4b5563',
       'light-gray': '#f9fafb',
       'light-black': '#111827',
-      'blue': '#1d4ed8',
     },
+    },
+    
     borderRadius: {
         DEFAULT: '4px',
         'lg': '0.5rem',
