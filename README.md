@@ -98,3 +98,10 @@ The Apache configuration above links together (literally) our web domain with th
     - Note: `Require all granted` allows access to a directory from all hosts
 - Sets the document root (i.e. the directory within the server) for the project
 - Specifies the filesystem path from which static files will be served
+
+
+## TO DO
+    - Testing
+        - Write unit tests for each app (see https://docs.djangoproject.com/en/4.2/topics/testing/)
+        - Write in-browser tests using Selenium and Django's LiveServerTestCase
+    - Install and set up Django Debug Toolbar
