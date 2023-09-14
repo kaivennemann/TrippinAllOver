@@ -55,6 +55,8 @@ def create_single_trip_json(outbound_airport, start_date, end_date):
 @csrf_exempt 
 def calendar(request):
     if request.method == "POST":
-        print(json.loads(request.body))
+        print(type(json.loads(request.body)))
+
+        
 
     return JsonResponse({})

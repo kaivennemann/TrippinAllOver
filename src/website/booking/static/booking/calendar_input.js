@@ -5,7 +5,7 @@ function make_data_list(data) {
 
 }
 
-const BasicCalendarButtonClass = "unselected-button font-normal hover:font-bold disabled:hover:bg-transparent hover:bg-sky-800 hover:opacity-50 hover:text-white h-8 w-full grid place-content-center";
+const BasicCalendarButtonClass = "unselected-button font-normal hover:font-bold disabled:hover:font-normal disabled:hover:bg-transparent disabled:text-silver hover:bg-sky-800 disabled:hover:text-silver hover:text-white h-8 w-full grid place-content-center";
 const StartCalendarButtonClass = "focus:bg-sky-700 selected-button font-normal hover:font-bold rounded-l-lg bg-sky-800 text-white h-8 w-full disabled:opacity-75 grid place-content-center";
 const EndCalendarButtonClass = "focus:bg-sky-700 selected-button font-normal hover:font-bold rounded-r-lg bg-sky-800 text-white h-8 w-full disabled:opacity-75 grid place-content-center";
 const SelectedCalendarButtonClass = "focus:bg-blue-200 selected-button font-normal hover:font-bold bg-blue-100 text-sky-800 h-8 w-full disabled:opacity-75 grid place-content-center";
@@ -57,10 +57,12 @@ const populate_calendar = () => {
     const offset = first_day_in_month(monthSelect.value, yearSelect.value) - 1;
 
     let day_in_month = 0;
+    const today = new Date();
 
     for (let y = 0; y < 6; y++) {
         for (let x = 0; x < 7; x++) {
             byCoords(x, y).className = BasicCalendarButtonClass;
+
             if ((y != 0 || x > offset) && day_in_month++ < month_length) {
                 byCoords(x, y).innerHTML = day_in_month;
                 byCoords(x, y).disabled = false;
@@ -69,23 +71,27 @@ const populate_calendar = () => {
                 let current_date = new Date(text_date);
                 byCoords(x, y).dataset.date = text_date;
 
-                if (text_date === currently_selected_date) {
+                if (current_date < today) {
+                    byCoords(x, y).disabled = true;
+                } else {
+                    if (text_date === currently_selected_date) {
                     byCoords(x, y).className = StartEndCalendarButtonClass;
-                }
-
-                const key = `${yearSelect.value}-${monthSelect.value}`;
-                CalendarData.forEach((range) => {
-                    let start = new Date(range["start"]);;
-                    let end = new Date(range["end"]);
-                    if (start < current_date && current_date < end) {
-                        byCoords(x, y).className = SelectedCalendarButtonClass;
-                    } else if (start.getTime() === current_date.getTime()) {
-                        byCoords(x, y).className = StartCalendarButtonClass;
-                    } else if (end.getTime() === current_date.getTime()) {
-                        byCoords(x, y).className = EndCalendarButtonClass;
                     }
 
-                });
+                    const key = `${yearSelect.value}-${monthSelect.value}`;
+                    CalendarData.forEach((range) => {
+                        let start = new Date(range["start"]);;
+                        let end = new Date(range["end"]);
+                        if (start < current_date && current_date < end) {
+                            byCoords(x, y).className = SelectedCalendarButtonClass;
+                        } else if (start.getTime() === current_date.getTime()) {
+                            byCoords(x, y).className = StartCalendarButtonClass;
+                        } else if (end.getTime() === current_date.getTime()) {
+                            byCoords(x, y).className = EndCalendarButtonClass;
+                        }
+
+                    });
+                }
             } else {
                 byCoords(x, y).innerHTML = "";
                 byCoords(x, y).disabled = true;
@@ -114,6 +120,12 @@ const calendar_right = () => {
     }
     populate_calendar();
 }
+
+const today = new Date();
+monthSelect.value = today.getMonth() + 1;
+yearSelect.value = today.getFullYear();
+monthSelect.dispatchEvent(new Event('change'))
+yearSelect.dispatchEvent(new Event('change'))
 
 populate_calendar();
 

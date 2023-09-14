@@ -183,23 +183,4 @@
     </script>
 
     <script type="text/javascript" src="{% static 'booking/calendar_input.js' %}" defer></script>
-    <!-- doesn't actually work, since the value of the date input is not updated until the form is submitted :( -->
-    <!--script defer>
-        const nowISO = (new Date).toISOString().slice(0, 10);
-        console.log(nowISO);
-
-        const start_date = document.querySelector('#start-date');
-        const end_date = document.querySelector('#end-date');
-
-        start_date.setAttribute('min', nowISO);
-        start_date.setAttribute('value', nowISO);
-        end_date.setAttribute('min', nowISO);
-        end_date.setAttribute('value', nowISO);
-        start_date.addEventListener("change", () => {
-            console.log(start_date);
-            const new_min = start_date.getAttribute('value');
-            console.log(new_min);
-            end_date.setAttribute('min', new_min);
-        });
-    </script-->
 {% endblock content %}
